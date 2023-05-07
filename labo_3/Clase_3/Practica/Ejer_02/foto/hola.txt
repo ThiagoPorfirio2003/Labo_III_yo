@@ -1,0 +1,57 @@
+XMAP - Apache
+El puerto no debe ser 80, porque es algo clasico como el error 404. Como el servidor es local
+no hay drama, pero cuando el servidor esta en el exterior ser recomienda un numero alto
+como 4000 o 6000
+
+En htdocs esta nuestra pagina
+
+Para probar el modulo de Apache se escribe en el navegador
+- localhost
+- localhost/dashboard/phpinfo.php
+
+el htdocs seria como la solucion y cada carpeta seria un proytecto
+
+PHP esta basado en C
+
+PHP significa PHP: Hypertext Pre-Processor
+
+PHP permite "Independisarse" del SO
+
+Laboratorio: Vamos a programar el lado del servidor
+Programacion: Vamos a programar el lado del cliente
+
+HTML no reconoce el enter ni tabulaciones, aunque usemos los caracteres de escape (\n,etc)
+si queremos usamos hay que hacer algo y deben estar entre comillas dobles
+
+En php se pueden usar el // o # (Funcionan igual) ,  o /* */
+
+Las variables son case sensitive, pero las palabras clave no 
+Hay que usar las mas mascaras de C
+El compilador de PHP usa el $ para las variables, y no lo usa cuando hay una constante
+
+el archivo index.php es el punto de partida por default de los navegadores, aunque se puede cambiar
+dentro del htdocs, si esto no se hace te mostrara el contenido del archivo como texto puro
+
+<?php ?> Son etiquetas de apertura y de cierre de de codigo php, la de cierre es necesaria si 
+se va a escribir tambien codigo que no sea de tipo php
+
+PHP compara por contenido usa el ==
+Si usamos el === compara el contenido y el tipo de dato, !== la contra parte
+
+Si usamos el == si se comparan el null, "", 0 entre ellos, daran true ya que se considera el 
+mismo contenido, el false es algo vacio o null
+
+Si usamos el === esta todo bien
+
+No hay sobrecarga de metodos, ni operadores, ni constructores
+
+$miArray = array("uno" => 1, "dos" => 2); Array asociativo, esto sirve para que los indices
+no sean numeros, sino letras
+
+enum Nombre_Enumerado{
+	Case Uno;
+	Case Dos;
+	Case tres;
+}
+
+Se usa el . para concatenar cadenas
