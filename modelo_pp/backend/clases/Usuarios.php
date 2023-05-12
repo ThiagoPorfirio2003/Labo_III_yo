@@ -16,37 +16,27 @@ Método de clase TraerTodos(): retorna un array de objetos de tipo Usuario, recu
 (con la descripción del perfil correspondiente).
 Método de clase TraerUno($params): retorna un objeto de tipo Usuario, de acuerdo al correo y clave que ser
 reciben en el parámetro $params.
-
 */
-
-
-/*
-id, nombre, correo, clave,
-id_perfil y perfil) y un método de instancia ToJSON(), que retornará los datos de
- la instancia nombre, correo y
-clave (en una cadena con formato JSON
-*/
-
 use JetBrains\PhpStorm\ArrayShape;
 use Porfirio\Alumno;
 
 class Usuario
 {
-
     private static string $_path = "./archivos/usuarios.json"; 
     public int $_id;
     public string $_nombre;
     public string $_correo;
     public string $_clave;
-    public string $_id_perfil;
+    public int $_id_perfil;
     public string $_perfil;
     //private static string $_pathFotos = "./fotos/";
 
-    public function __construct(string $nombre, string $correo, string $clave)
+    public function __construct(string $nombre, string $correo, string $clave, int $id_perfil=0)
     {
         $this->_nombre = $nombre;
         $this->_correo = $correo;
         $this->_clave = $clave;
+        $this->_id_perfil = $id_perfil;
     }
 
     public function toJSON() : string
@@ -82,11 +72,6 @@ class Usuario
         return json_encode($std);
     }
 
-        /*
-Método de clase TraerTodosJSON(), que retornará un array de objetos de tipo Usuario, recuperado del
-archivo usuarios.json
-    */
-
     public static function TraerTodoJSON() : array
     {
         $retorno = array();
@@ -106,12 +91,58 @@ archivo usuarios.json
                     new Usuario($obj_recuperado->_nombre, $obj_recuperado->_correo, $obj_recuperado->_clave));
                 }
             }
-
             fclose($archivo);
         }
-        
         return $retorno;
-    }   
-}
+    }
+    
+    public function Agregar() : bool
+    {        
+        try
+        {
+            $pdo = new PDO('mysql:host=localhost;dbname=usuarios_test;charset=utf8', "root", "");
+            $pdoStatement = $pdo->prepare('INSERT INTO usuarios (nombre, correo, clave, id_perfil) VALUES (:nombre, :correo, :clave, :id_perfil)');
 
+            $pdoStatement->bindValue(':nombre', $this->_nombre, PDO::PARAM_STR);
+            $pdoStatement->bindValue(':correo', $this->_correo, PDO::PARAM_STR);
+            $pdoStatement->bindValue(':clave', $this->_clave, PDO::PARAM_STR);
+            $pdoStatement->bindValue(':id_perfil', $this->_id_perfil, PDO::PARAM_INT);
+
+            $retorno = $pdoStatement->execute();
+        }
+        catch(PDOException)
+        {
+            $retorno = false;
+        }
+
+        return $retorno;
+    }
+
+    /*
+Método de clase TraerTodos(): retorna un array de objetos de tipo Usuario, recuperados de la base de datos
+(con la descripción del perfil correspondiente).
+Método de clase TraerUno($params): retorna un objeto de tipo Usuario, de acuerdo al correo y clave que ser
+reciben en el parámetro $params.
+    */
+
+    public static function TraerTodos() : array
+    {
+        $retorno = array();
+
+        try
+        {
+            $pdo = new PDO('mysql:host=localhost;dbname=usuarios_test;charset=utf8', "root", "");
+
+            $pdoStatement = $pdo->query("SELECT * FROM usuarios");
+
+            
+        }
+        catch(PDOException)
+        {
+
+        }
+
+        return $retorno;
+    }
+}
 ?>
