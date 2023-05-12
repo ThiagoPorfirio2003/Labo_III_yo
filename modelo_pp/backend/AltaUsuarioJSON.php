@@ -6,7 +6,7 @@ $correo = $_POST["correo"];
 $clave = $_POST["clave"];
 $nombre = $_POST["nombre"];
 
-    $usuario = new Usuario($nombre, $correo,$clave);
+    $usuario = new Usuario($nombre, $correo, $clave);
 
     echo($usuario->GuardarEnArchivo());
 

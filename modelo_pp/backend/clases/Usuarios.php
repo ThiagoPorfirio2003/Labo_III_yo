@@ -22,7 +22,7 @@ use Porfirio\Alumno;
 
 class Usuario
 {
-    private static string $_path = "./archivos/usuarios.json"; 
+    private static string $_path = "./clases/archivos/usuarios.json"; 
     public int $_id;
     public string $_nombre;
     public string $_correo;
