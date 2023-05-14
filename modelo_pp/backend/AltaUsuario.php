@@ -25,4 +25,10 @@ $id_perfil = (int)$_POST["id_perfil"];
 
     //echo ;
     echo '{"exito":' . $exito . ', "mensaje": "'. $mensaje .'"}';
+
+/*
+VerificarUsuarioJSON.php: (POST) Se recibe el parámetro usuario_json (correo y clave, en formato de cadena
+JSON) y se invoca al método TraerUno.
+Se retornará un JSON que contendrá: éxito(bool) y mensaje(string) indicando lo acontecido.
+*/
 ?>
